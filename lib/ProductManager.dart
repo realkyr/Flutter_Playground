@@ -9,26 +9,42 @@ class ProductManager extends StatefulWidget {
 }
 
 class _ProductManagerState extends State<ProductManager> {
-  List<String> products = ['Food Tester'];
+
+  List<String> products = [];
+  TextEditingController text = new TextEditingController();
+
+  void handleButton() {
+    setState(() {
+      products.add(text.text);
+      text.text = '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(10),
-              child: RaisedButton(
-                child: Text('Add Product'),
-                onPressed: () {
-                  setState(() {
-                    products.add('Advance Food Tester');
-                  });
-                  print(products);
-                },
-              ),
+    return Column(children: <Widget>[
+      Container(
+        margin: EdgeInsets.all(10),
+        child: RaisedButton(
+          child: Text('Add Product'),
+          onPressed: () {
+            handleButton();
+          },
+        ),
+      ),
+      Container(
+          margin: EdgeInsets.all(10),
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Please enter a item\'s name'
             ),
-            Product(products)
-          ]
-    );
+            controller: text,
+        )
+      ),
+      Expanded(
+        child: Product(products),
+      )
+    ]);
   }
 }

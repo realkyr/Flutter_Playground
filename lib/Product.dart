@@ -6,7 +6,8 @@ class Product extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      shrinkWrap: true,
       children: products
           .map((el) => Card(
                 child: Column(
