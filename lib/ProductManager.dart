@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import './Product.dart';
 
 class ProductManager extends StatefulWidget {
@@ -25,7 +26,7 @@ class _ProductManagerState extends State<ProductManager> {
     return Column(children: <Widget>[
       Container(
         margin: EdgeInsets.all(10),
-        child: RaisedButton(
+        child: CupertinoButton(
           child: Text('Add Product'),
           onPressed: () {
             handleButton();
@@ -34,11 +35,13 @@ class _ProductManagerState extends State<ProductManager> {
       ),
       Container(
           margin: EdgeInsets.all(10),
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Please enter a item\'s name'
+          child: CupertinoTextField(
+            decoration: BoxDecoration(
+              border: Border.all(
+                style: BorderStyle.none
+              )
             ),
+            placeholder: 'Please enter a item\'s name',
             controller: text,
         )
       ),
